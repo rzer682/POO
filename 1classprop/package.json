@@ -1,0 +1,16 @@
+{
+  "name": "1classprop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+ 
+    "start-demo": "tsc && node distant/app.js"},
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
