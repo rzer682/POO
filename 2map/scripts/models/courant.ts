@@ -1,33 +1,34 @@
-import { Personne } from './personne';
+import { Personne } from './personne'; // Importation du modèle de données Personne depuis le fichier personne.ts dans le même dossier.
+import { Compte } from './compte'; // Importation de la classe de base Compte depuis le fichier compte.ts dans le même dossier.
 
-export class Courant {
-    private _numero!: string;
-    private _solde!: number;
-    private _ligneDeCredit!: number;
-    private _titulaire!: Personne;
 
+// Définition de la classe Courant qui étend la classe Compte
+export class Courant extends Compte {
+    // In TypeScript, the 'private' keyword is used to define private members of a class. 
+    // Private members can only be accessed within the class itself and not from outside the class. 
+    // The '!' after the attribute name indicates that it will be initialized in the Courant class constructor. 
+    // The 'protected' keyword is used to define protected members of a class. 
+    // Protected members can be accessed within the class itself and its subclasses, but not from outside the class or its subclasses. 
+    // In this case, '_ligneDeCredit' is a protected attribute representing the credit line of the current account, 
+    // while '_courantTitulaire' is a private attribute representing the account holder of the current account. 
+    // These attributes can only be accessed within the Courant class and its subclasses, but not from outside. 
+    private _ligneDeCredit!: number; 
+    private _courantTitulaire!: Personne;
+
+    /**
+     * Constructeur de la classe Courant
+     * @param numero Le numero du compte
+     * @param solde Le solde initial du compte
+     * @param ligneDeCredit La ligne de credit du compte
+     * @param titulaire Le titulaire du compte
+     */
     constructor(numero: string, solde: number, ligneDeCredit: number, titulaire: Personne) {
-        this._numero = numero;
-        this._solde = solde;
+        super(numero, solde, titulaire); // appel du constructeur de la classe parentero;
+        
         this._ligneDeCredit = ligneDeCredit;
-        this._titulaire = titulaire;
+        this._courantTitulaire = titulaire;
     }
-    set Numero(numero: string){
-        this._numero = numero;
-    }
-
-    get Numero(): string {
-        return this._numero;
-    }
-
-    set Solde(solde: number) {
-        this._solde = solde;
-    }
-
-    get Solde(): number {
-        return this._solde;
-    }
-
+    //#region Getters/Setters
     set LigneDeCredit(ligneDeCredit: number) {
         this._ligneDeCredit = ligneDeCredit;
     }
@@ -37,32 +38,47 @@ export class Courant {
     }
 
     set Titulaire(titulaire: Personne) {
-        this._titulaire = titulaire;
+        this._courantTitulaire = titulaire;
     }
 
     get Titulaire(): Personne {
-        return this._titulaire;
+        return this._courantTitulaire;
     }
+    //#endregion
 
     
-    Retrait(montant: number): boolean {
-        if (montant <= 0) {
-            console.log("Le montant du retrait doit être positif.");
-            return false;
-        }
-        if (this._solde - montant < -this._ligneDeCredit) {
-            console.log("Fonds insuffisants. Le retrait dépasse le solde courant.");
-            return false;
-        }
-        this._solde -= montant;
-        return true;
-    }
+    /**
+     * Retrait d'un montant sur le compte courant.
+     * @param montant Le montant à retirer.
+     * @returns true si le retrait a réussi, false sinon.
+     */
 
-    Depot(montant: number): void {
-        if (montant <= 0) {
-            console.log("Le montant du dépôt doit être positif.");
+    /**
+     * Affiche la ligne de crédit du compte courant.
+     */
+    afficherLigneDeCredit(): void {    
+        console.log(`Ligne de credit: ${this._ligneDeCredit}`);
+    }
+    /**
+     * Retire un montant de la ligne de crédit.
+     * @param montant Le montant à retirer.
+     */
+    retraitLigneDeCredit(montant: number): void {
+        if (montant <= 0 || montant > this._ligneDeCredit) {
+            console.log("Le montant du retrait doit être positif.");
             return;
         }
-        this._solde += montant;
+        this._ligneDeCredit -= montant;
+    }
+    /**
+     * Remplit la ligne de crédit du compte courant.
+     * @param montant Le montant à ajouter.
+     */
+    remplirLigneDeCredit(montant: number): void {
+        if (montant <= 0) {
+            console.log("Le montant du remplissage doit être positif.");
+            return;
+        }
+        this._ligneDeCredit += montant;
     }
 }

@@ -15,17 +15,17 @@ console.log(`Solde: ${compte1.Solde}`);
 console.log(`Ligne de crédit: ${compte1.LigneDeCredit}`);
 console.log(`Titulaire: ${compte1.Titulaire.Nom} ${compte1.Titulaire.Prenom}`);
 console.log("\nTentative de retrait de 300...");
-if (compte1.Retrait(300)) {
+if (compte1.retrait(300)) {
     console.log(`Retrait effectué. Nouveau solde: ${compte1.Solde}`);
 }
 else {
     console.log("Retrait échoué.");
 }
 console.log("\nDépôt de 500...");
-compte1.Depot(500);
+compte1.depot(500);
 console.log(`Nouveau solde: ${compte1.Solde}`);
 console.log("\nTentative de retrait de 2000...");
-if (compte1.Retrait(2000)) {
+if (compte1.retrait(2000)) {
     console.log(`Retrait effectué. Nouveau solde: ${compte1.Solde}`);
 }
 else {

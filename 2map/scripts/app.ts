@@ -1,55 +1,81 @@
+/**
+ * Code de démonstration pour la gestion des comptes bancaires.
+ */
 import { Personne } from './models/personne';
+import { Epargne } from './models/epargne';
 import { Courant } from './models/courant';
 import { Banque } from './models/banque';
 
 
+
+/**
+ * Création d'un objet Personne.
+ */
 const titulaire1 = new Personne("Dupont", "Jean", new Date(1985, 4, 12));
 
-
+/**
+ * Affichage des informations du titulaire.
+ */
 console.log(`Nom: ${titulaire1.Nom}`);
 console.log(`Prénom: ${titulaire1.Prenom}`);
 console.log(`Date de naissance: ${titulaire1.DateNaiss.toDateString()}`);
 
+/**
+ * Création de plusieurs objets Compte.
+ */
+const compte1 = new Courant("1234", 1000, 200, titulaire1);
+const compte2 = new Courant("5678", 5000, 500, titulaire1);
+const compte3 = new Epargne("9012", 10000, 0.05, titulaire1);
 
-const compte1 = new Courant("123456789", 1000, 500, titulaire1);
-const compte2 = new Courant("987654321", 2000, 300, titulaire1);
-const compte3 = new Courant("987655521", 2000, 300, titulaire1);
-
-
+/**
+ * Affichage des informations d'un compte.
+ */
 console.log(`Numéro de compte: ${compte1.Numero}`);
 console.log(`Solde: ${compte1.Solde}`);
 console.log(`Ligne de crédit: ${compte1.LigneDeCredit}`);
 console.log(`Titulaire: ${compte1.Titulaire.Nom} ${compte1.Titulaire.Prenom}`);
 
-
+/**
+ * Tentatives de retrait et de dépôt sur le compte.
+ */
 console.log("\nTentative de retrait de 300...");
-if (compte1.Retrait(300)) {
+if (compte1.retrait(300)) {
     console.log(`Retrait effectué. Nouveau solde: ${compte1.Solde}`);
 } else {
     console.log("Retrait échoué.");
 }
 console.log("\nDépôt de 500...");
-compte1.Depot(500);
+compte1.depot(500);
 console.log(`Nouveau solde: ${compte1.Solde}`);
 
 console.log("\nTentative de retrait de 2000...");
-if (compte1.Retrait(2000)) {
+if (compte1.retrait(2000)) {
     console.log(`Retrait effectué. Nouveau solde: ${compte1.Solde}`);
 } else {
     console.log("Retrait échoué.");
 }
 
+/**
+ * Création d'une banque et ajout de plusieurs comptes.
+ */
 const maBanque = new Banque("Banque Centrale");
 
 maBanque.Ajouter(compte1);
 maBanque.Ajouter(compte2);
 maBanque.Ajouter(compte3);
 
+/**
+ * Affichage de tous les comptes de la banque.
+ */
 maBanque.AfficherTousLesComptes();
 
-// Suppression d'un compte
+/**
+ * Suppression d'un compte.
+ */
 maBanque.Supprimer("123456789");
 
-// Vérification après suppression
+/**
+ * Affichage des comptes restants.
+ */
 console.log("\nAprès suppression du compte 123456789:");
 maBanque.AfficherTousLesComptes();
