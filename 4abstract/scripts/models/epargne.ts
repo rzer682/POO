@@ -59,7 +59,7 @@ export class Epargne extends Compte {
      * Permet de calculer les intérêts sur le compte.
      */
     CalculInteret(): number {
-        this.Solde +=  this.Solde * Epargne.TAUX;
+        this.Solde *= Epargne.TAUX;
         return this.Solde;
     }
     AppliquerInteret(): void {

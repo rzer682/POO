@@ -15,8 +15,8 @@ export class Courant extends Compte {
     private _ligneDeCredit!: number; 
     private _courantTitulaire!: Personne;
 
-    private static TAUX_POSITIF = 0.03;
-    private static TAUX_NEGATIF = 0.0975;
+    private static _TAUX_POSITIF = 0.03;
+    private static _TAUX_NEGATIF = 0.0975;
 
     /**
      * Constructeur de la classe Courant
@@ -78,7 +78,7 @@ export class Courant extends Compte {
     }
 
     CalculInteret(): number {
-        return this.Solde * (Courant.TAUX_POSITIF - Courant.TAUX_NEGATIF);
+        return this.Solde * (Courant._TAUX_POSITIF - Courant._TAUX_NEGATIF);
     }
     AppliquerInteret(): void {
         this.depot(this.CalculInteret());

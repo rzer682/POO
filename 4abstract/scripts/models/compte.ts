@@ -1,7 +1,7 @@
 import { Personne } from './personne';
 
 
- export abstract class Compte {
+export abstract class Compte {
     private _numero!: string;
     private _solde!: number;
     private _titulaire!: Personne;
@@ -93,7 +93,7 @@ import { Personne } from './personne';
         // transactions passées en paramètre et on la retourne
         return transactions.concat(localTransactions)
     }
-    abstract CalculInteret(): number
-    abstract  AppliquerInteret() : void
+    protected abstract CalculInteret(): number
+    protected abstract  AppliquerInteret() : void
 
 }
