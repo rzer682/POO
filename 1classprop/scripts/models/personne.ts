@@ -1,89 +1,60 @@
-class Personne {
-    private _nom!: string;
-    private _prenom!: string;
-    private _dateNaiss!: Date;
+/**
+ * Cette classe représente une personne.
+ * Une personne a un nom, un prénom et une date de naissance.
+ * Le mot-clé "private" signifie que ces propriétés ne sont pas accessibles directement depuis l'extérieur de la classe.
+ * Les propriétés sont des champs de la classe qui permettent de stocker des informations.
+ * Les noms des propriétés commencent par un underscore (_) pour indiquer qu'elles sont privées.
+ * Les types des propriétés sont indiqués derrière le nom de la propriété, séparés par un point d'exclamation (!).
+ * Les types sont des ensembles de valeurs possibles pour une propriété. Par exemple, le type "string" signifie que la propriété peut prendre n'importe quelle valeur qui est une chaîne de caractères.
+ * Les dates sont représentées en utilisant l'objet Date de JavaScript.
+ */
+export class Personne {
+    //Attributs
+    private _Nom!: string // propriété privée qui stocke le nom de la personne
+    private _Prenom!: string // propriété privée qui stocke le prénom de la personne
+    private _DateNaiss!: Date // propriété privée qui stocke la date de naissance de la personne
 
-    setNom(nom: string): void {
-        this._nom = nom;
-    }
-    getNom(): string {
-        return this._nom;
-    }
-    setPrenom(prenom: string): void {
-        this._prenom = prenom;
-    }
-    getPrenom(): string {
-        return this._prenom;
-    }
+    //Propriétés (ou getters et setters)
+    // Les propriétés sont des méthodes qui permettent d'accéder aux attributs privés de l'objet.
+    // Les propriétés sont définies en utilisant le mot-clé "get" pour la lecture et le mot-clé "set" pour l'écriture.
+    // Les propriétés permettent de contrôler l'accès aux attributs de l'objet.
+    // Les propriétés peuvent contenir des instructions qui s'exécutent lorsque l'attribut est lu ou modifié.
 
-    setDateNaiss(dateNaiss: Date): void {
-        this._dateNaiss = dateNaiss;
-    }
-
-    getDateNaiss(): Date {
-        return this._dateNaiss;
-    }
-
-}
-
-class Courant {
-    private _numero!: string;
-    private _solde!: number;
-    private _ligneDeCredit!: number;
-    private _titulaire!: Personne;
-
-
-    // Getters et Setters
-
-    setNumero (numero: string): void {
-        this._numero = numero;
-    }
-    getNumero(): string {
-        return this._numero;
+    // Propriété qui permet de LIRE le nom de la personne
+    get Nom(): string {
+        // La propriété "Nom" renvoie la valeur actuelle de l'attribut "_Nom"
+        return this._Nom
     }
 
-    setSolde(solde: number): void {
-        this._solde = solde;
-    }
-    getSolde(): number {
-        return this._solde;
-    }
-    
-    setLigneDeCredit(ligneDeCredit: number): void {
-        this._ligneDeCredit = ligneDeCredit;
-    }
-    getLigneDeCredit(): number {
-        return this._ligneDeCredit;
+    // Propriété qui permet d'ECRIRE le nom de la personne
+    set Nom(nom: string) {
+        // La propriété "Nom" modifie la valeur actuelle de l'attribut "_Nom"
+        this._Nom = nom;
     }
 
-    setTitulaire(titulaire: Personne): void {
-        this._titulaire = titulaire;
-    }
-    getTitulaire(): Personne {
-        return this._titulaire;
-    }
-
-    // Méthodes pour le retrait et le dépôt
-    Retrait(montant: number): boolean {
-        if (montant <= 0) {
-            console.log("Le montant du retrait doit être positif.");
-            return false;
-        }
-        if (this._solde - montant < -this._ligneDeCredit) {
-            console.log("Fonds insuffisants. Le retrait dépasse la ligne de crédit.");
-            return false;
-        }
-        this._solde -= montant;
-        return true;
+    // Propriété qui permet de LIRE le prénom de la personne
+    get Prenom(): string {
+        // La propriété "Prenom" renvoie la valeur actuelle de l'attribut "_Prenom"
+        return this._Prenom
     }
 
-    Depot(montant: number): void {
-        if (montant <= 0) {
-            console.log("Le montant du dépôt doit être positif.");
-            return;
-        }
-        this._solde += montant;
+    // Propriété qui permet d'ECRIRE le prénom de la personne
+    set Prenom(prenom: string) {
+        // La propriété "Prenom" modifie la valeur actuelle de l'attribut "_Prenom"
+        this._Prenom = prenom
+    }
+
+    // Propriété qui permet de LIRE la date de naissance de la personne
+    get DateNaiss(): Date {
+        // La propriété "DateNaiss" renvoie la valeur actuelle de l'attribut "_DateNaiss"
+        return this._DateNaiss
+    }
+
+    // Propriété qui permet d'ECRIRE la date de naissance de la personne
+    set DateNaiss(dateNaissance: Date) {
+        // La propriété "DateNaiss" modifie la valeur actuelle de l'attribut "_DateNaiss"
+        this._DateNaiss = dateNaissance
     }
 }
-
+   
 
